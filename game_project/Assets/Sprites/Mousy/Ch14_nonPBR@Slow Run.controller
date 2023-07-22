@@ -46,13 +46,16 @@ AnimatorStateMachine:
     m_Position: {x: 376.4, y: 137, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6775053805370801189}
-    m_Position: {x: 397.4, y: 283, z: 0}
+    m_Position: {x: 400, y: 280, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2260323040360031331}
     m_Position: {x: 517.6667, y: 87.3497, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2904505094492875415}
     m_Position: {x: 520.99835, y: 10.72229, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 7498726799819183677}
+    m_Position: {x: 647.4, y: 233, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -210,6 +213,32 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: ed2434fa3eff47343a7245f2b99b62e4, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &7498726799819183677
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rifle Hit To Back
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: dc76efa842b8d7a4fa95582a740ad268, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
