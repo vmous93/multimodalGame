@@ -22,12 +22,19 @@ public class ObstacleCrash : MonoBehaviour
 
     IEnumerator ObstacleCollision(){
         hitFX.Play();
+        StartCoroutine(TriggerHapticFeedback(3f));
         this.gameObject.GetComponent<BoxCollider>().enabled = false;
         mousy.GetComponent<PlayerMovement>().enabled = false;
         moveType.GetComponent<Animator>().Play("Rifle Hit To Back");
         CrashControl.healthCount -= 5; //Reducing health
         yield return new WaitForSeconds(1); // Adjust the duration of the animation
         StartCoroutine(BlinkMousy(.5f));
+    }
+
+    IEnumerator TriggerHapticFeedback(float duration)
+    {
+		Handheld.Vibrate();
+		yield return new WaitForSeconds(duration);
     }
 
     IEnumerator BlinkMousy(float duration){
@@ -44,9 +51,12 @@ public class ObstacleCrash : MonoBehaviour
 
     IEnumerator KeepGoing(){
         yield return new WaitForSeconds(1);
+        Vector3 newPosition = mousy.transform.position;
+        newPosition.y = 1.4f;
+        mousy.transform.position = newPosition;
         mousy.GetComponent<PlayerMovement>().enabled = true;
-        moveTypeAfter.GetComponent<Animator>().Play("Slow Run");
         this.gameObject.GetComponent<BoxCollider>().enabled = true;
+        moveTypeAfter.GetComponent<Animator>().Play("Slow Run");
     }
 }
 
