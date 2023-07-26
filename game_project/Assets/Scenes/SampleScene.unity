@@ -10478,12 +10478,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 6
+  playerFasterSpeed: 10
   moveSideSpeed: 5
   accelerometerSensitivity: 2
   jumping: 0
   landing: 0
   jumpingTreshold: 6
   player: {fileID: 46893576}
+  connectionIP: 127.0.0.1
+  connectionPort: 25001
 --- !u!143 &691391706
 CharacterController:
   m_ObjectHideFlags: 0
