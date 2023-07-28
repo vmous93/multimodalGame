@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     TcpListener listener;
     TcpClient client;
     bool running;
+    public AudioSource fasterFX;
 
     // Start is called before the first frame update
     void Start()

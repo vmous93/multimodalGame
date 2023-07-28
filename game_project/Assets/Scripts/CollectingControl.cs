@@ -9,6 +9,7 @@ public class CollectingControl : MonoBehaviour
 
     public static int cheeseCount;
     public GameObject cheeseCountShow;
+    public GameObject cheeseCountFinishShow;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,5 +20,6 @@ public class CollectingControl : MonoBehaviour
     void Update()
     {
         cheeseCountShow.GetComponent<Text>().text = "" + cheeseCount;
+        cheeseCountFinishShow.GetComponent<Text>().text = "" + cheeseCount;
     }
 }

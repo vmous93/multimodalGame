@@ -9,6 +9,7 @@ public class CorrectAnswerControl : MonoBehaviour
 
     public static int correctAnswerCount = 0;
     public GameObject CorrectAnswerShow;
+    public GameObject CorrectAnswerFinishShow;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,5 +20,6 @@ public class CorrectAnswerControl : MonoBehaviour
     void Update()
     {
         CorrectAnswerShow.GetComponent<Text>().text = "" + correctAnswerCount;
+        CorrectAnswerFinishShow.GetComponent<Text>().text = "" + correctAnswerCount;
     }
 }

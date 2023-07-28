@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstacleMovement : MonoBehaviour
+public class LiftMovement : MonoBehaviour
 {
     public float movementSpeed = 5f;
     public float leftBoundary = -4f;
