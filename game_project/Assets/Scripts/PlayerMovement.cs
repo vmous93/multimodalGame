@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
                     transform.Translate(Vector3.right * Time.deltaTime * moveSideSpeed);
                 }
             }
-            if (Input.GetKey(KeyCode.Space)){
+            if (Input.GetKey(KeyCode.Space) || Input.GetMouseButtonDown(0)){
                 if (jumping == false){
                     jumping = true;
                     player.GetComponent<Animator>().Play("Jump");
@@ -91,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
         jumping = false;
         landing = false;
         player.GetComponent<Animator>().Play("Slow Run");
+        transform.position = new Vector3(transform.position.x, 1.4f, transform.position.z);
     }
 
     void GetInfo()

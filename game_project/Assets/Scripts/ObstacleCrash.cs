@@ -40,23 +40,24 @@ public class ObstacleCrash : MonoBehaviour
     IEnumerator BlinkMousy(float duration){
         float blinkTime = 0.05f; 
         float endTime = Time.time + duration;
-
+        PlayerMovement.hallucination = true;
         while (Time.time < endTime){
             mousy.SetActive(!mousy.activeSelf); 
             yield return new WaitForSeconds(blinkTime);
         }
 
         mousy.SetActive(true);
+        PlayerMovement.hallucination = false;
     }
 
     IEnumerator KeepGoing(){
-        yield return new WaitForSeconds(1);
-        Vector3 newPosition = mousy.transform.position;
-        newPosition.y = 1.4f;
-        mousy.transform.position = newPosition;
+        yield return new WaitForSeconds(1f);
         mousy.GetComponent<PlayerMovement>().enabled = true;
         this.gameObject.GetComponent<BoxCollider>().enabled = true;
         moveTypeAfter.GetComponent<Animator>().Play("Slow Run");
+        Vector3 newPosition = mousy.transform.position;
+        newPosition.y = 1.4f;
+        mousy.transform.position = newPosition;
     }
 }
 

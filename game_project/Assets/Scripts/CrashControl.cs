@@ -7,7 +7,7 @@ using Text = TMPro.TextMeshProUGUI;
 public class CrashControl : MonoBehaviour
 {
 
-    public static int healthCount = 200;
+    public static int healthCount = 205;
     public GameObject healthCountShow;
     // Start is called before the first frame update
     void Start()
