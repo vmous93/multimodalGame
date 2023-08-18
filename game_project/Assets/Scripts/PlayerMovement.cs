@@ -42,12 +42,12 @@ public class PlayerMovement : MonoBehaviour
     {
         // Check the player speed based on heart rate
         float currentSpeed = useFasterSpeed ? playerFasterSpeed : playerSpeed;
-
+        
         if (currentSpeed == playerFasterSpeed){
             player.GetComponent<Animator>().Play("Fast Run");
         }
         else player.GetComponent<Animator>().Play("Slow Run");
-
+        
         transform.Translate(Vector3.forward * Time.deltaTime * currentSpeed, Space.World);
         if (hallucination == false){
 

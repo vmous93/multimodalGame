@@ -3,6 +3,8 @@ import time
 import pylsl
 import numpy as np
 from pylsl import StreamInlet, resolve_stream
+import datetime
+from biosppy.signals import ecg
 
 # Make Connection with Bitalino
 
@@ -18,39 +20,41 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.connect((host, port))
 
 fastValue = 0
-baseline = 125.5
-HRList = []
-HRMsequence = []
-it = 0
-a = 1
+baseline = 78.5
+# Set a window size for computing the Heart Rate
+window_size = 10 #Seconds
+ECG_list = []
+stop_cond = False
 #time.sleep(4) #sleep 0.5 sec
+start_window = datetime.datetime.now()
 
-while a < 100:
-    if it < 100:
-        # Receive samples
-        sample, timestamp = inlet.pull_sample()
-        HRList.append(sample[2])
-        #print("Heart Rate = ", int(sample[2]))
-        it +=1
+while stop_cond == False:
+
+    stop_window = datetime.datetime.now() - start_window
+
+    # Receive samples
+    sample, timestamp = inlet.pull_sample()
+    ECG_list.append(sample[2])
+
+    if int(stop_window.total_seconds()) > 0 and int(stop_window.total_seconds()) % window_size == 0:
         
-    if it >= 99:
-        it = 0
-        HRMean = np.round(np.mean(HRList), 2)
-        print("      The Mean of Heart Rate = ", HRMean)
-        HRMsequence.append(HRMean)
-        HRList = []
+        # ECG signal processing using biosppy library and extract Heart Rate
+        HR = ecg.ecg(signal=ECG_list, sampling_rate=1000., show=False)["heart_rate"]
 
-    if len(HRMsequence) == 10:
-        tenSecondsHR = np.round(np.mean(HRMsequence), 2)
-        if tenSecondsHR > baseline and fastValue == 0:
+        # Compute HR mean for each window
+        HR_mean = np.round(np.mean(HR), 2)
+        print("Mean of", window_size, "seconds HR = ", HR_mean)
+
+        if HR_mean < baseline and fastValue == 0:
             fastValue = 1
-            # slow = 0
             print("go faster")
-        if tenSecondsHR < baseline:
-            #slow = 1
+
+        if HR_mean > baseline:
             fastValue = 0
             print("go slower")
-        HRMsequence = []
+
+        ECG_list = []
+        start_window = datetime.datetime.now()
     
     posString = (str(fastValue)) 
     print(posString)
