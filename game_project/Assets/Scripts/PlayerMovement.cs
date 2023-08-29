@@ -18,6 +18,9 @@ public class PlayerMovement : MonoBehaviour
     public bool landing = false;
     public int jumpingTreshold = 3;
     public GameObject player;
+    public float boundryTreshold = 0.5f;
+    public AudioSource leftCrashFX;
+    public AudioSource rightCrashFX;
     
     // Make connection to Python script for HR
     Thread mThread;
@@ -58,6 +61,13 @@ public class PlayerMovement : MonoBehaviour
                 if (this.gameObject.transform.position.x > PlayerBoundary.leftBoundry)
                 {
                     transform.Translate(Vector3.left * Time.deltaTime * moveSideSpeed);
+                    if (this.gameObject.transform.position.x < PlayerBoundary.leftBoundry + boundryTreshold){
+                        // Play sound to inform that Player aproach to the left boundry 
+                        leftCrashFX.Play();
+                    }else{
+                        leftCrashFX.Stop();
+                        rightCrashFX.Stop();
+                    }
                 }
             }
             else if ((accelerationX > 0.1f) || (Input.GetKey(KeyCode.RightArrow))){
@@ -65,6 +75,13 @@ public class PlayerMovement : MonoBehaviour
                 if (this.gameObject.transform.position.x < PlayerBoundary.rightBoundry)
                 {
                     transform.Translate(Vector3.right * Time.deltaTime * moveSideSpeed);
+                    if (this.gameObject.transform.position.x > PlayerBoundary.rightBoundry - boundryTreshold){
+                        // Play sound to inform that Player aproach to the left boundry 
+                        rightCrashFX.Play();
+                    }else{
+                        leftCrashFX.Stop();
+                        rightCrashFX.Stop();
+                    }
                 }
             }
             if (Input.GetKey(KeyCode.Space) || Input.GetMouseButtonDown(0)){
@@ -74,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
                     StartCoroutine(jumpduration());
                 }
             }
+            
         }
         if (jumping == true){
             if (landing == false){
