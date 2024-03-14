@@ -1,4 +1,4 @@
-#### **Group Members:** Zahra Jaleh & Vahid Mousavinezhad
+#### Zahra Jaleh & Vahid Mousavinezhad
 
 <img src="images/CheesyMath_logo.png" alt="alt text" width="200" height="200" align="center">
 
